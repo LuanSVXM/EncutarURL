@@ -10,7 +10,7 @@ app.use(cors());
 const RouterApi = Router();
 
 RouterApi.get("/", (request: Request, response: Response) =>  {
-    return response.status(200).json({message: "Seja bem vindo a api (/^▽^)/ "})
+    return response.status(200).json({message: "Seja bem vindo a api (/^▽^)/ "});
 });
 
 app.use(RouterApi);
