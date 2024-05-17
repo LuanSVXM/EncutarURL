@@ -2,12 +2,8 @@ import {
   Column,
   Entity,
   Index,
-  JoinColumn,
-  ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryColumn,
-  UpdateDateColumn,
 } from "typeorm";
 import getEnvironments from "@environment";
 import CurtUrls from "../../curt_urls/models/curt-urls.model";

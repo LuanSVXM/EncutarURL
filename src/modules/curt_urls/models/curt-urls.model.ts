@@ -4,10 +4,7 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
-  OneToMany,
-  OneToOne,
   PrimaryColumn,
-  UpdateDateColumn,
 } from "typeorm";
 import getEnvironments from "@environment";
 import User from "../../users/models/user.model";
