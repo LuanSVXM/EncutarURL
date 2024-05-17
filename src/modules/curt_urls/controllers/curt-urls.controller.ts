@@ -27,11 +27,12 @@ export default class CurtUrlsController {
       }
 
       helper.CountURl(url);
-      
+
       return response
         .status(200)
         .redirect(url?.url || "https://www.google.com/");
     } catch (err) {
+        console.log(err);
       return await response
         .status(500)
         .json(helper.SendMessage("Erro interno"));

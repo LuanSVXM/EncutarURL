@@ -32,13 +32,13 @@ export default class CurtUrls {
   views: number | undefined;
 
   @Column({
-    name: "shortID",
+    name: "short_id",
     type: "varchar",
     length: 6,
   })
   short_id: string | undefined;
 
   @ManyToOne(() => User, (relation) => relation.urls)
-  @JoinColumn({ name: "userID", referencedColumnName: "id" })
+  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User | undefined;
 }
