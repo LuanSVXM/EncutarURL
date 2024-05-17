@@ -13,7 +13,8 @@
     "emitDecoratorMetadata": true,
     "paths": {
       "@config": ["./src/config"],
-      "@environment": ["./src/config/environments"]
+      "@environment": ["./src/config/environments"],
+      "@helpers": ["./src/helpers"]
     }
   },
   "include": ["./src"]
