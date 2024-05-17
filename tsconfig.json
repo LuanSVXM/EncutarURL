@@ -19,7 +19,8 @@
       "@config": ["./src/config"],
       "@environment": ["./src/config/environments"],
       "@helpers": ["./src/helpers"],
-      "@server": ["./src/server.ts"]
+      "@server": ["./src/server.ts"],
+      "@middlewares": ["./src/middlewares"]
     }
   },
   "include": ["./src"]
