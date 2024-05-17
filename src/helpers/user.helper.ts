@@ -7,6 +7,10 @@ export const ValidEmail = (email: string) => {
   return regEmail.test(String(email).toLowerCase());
 };
 
+export const GetToken = (barerToken: string) => {
+  return String(barerToken).split(' ')[1] || '';
+} 
+
 export const GenerateHash = async (payload: string, salts: number) => {
   return await hash(payload, salts);
 };

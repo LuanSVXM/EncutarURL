@@ -19,7 +19,7 @@ export default async function AuthenticateUser(
   requiredUser = false
 ) {
   try {
-    const token = request?.headers?.authorization || "";
+    const token = helpers.GetToken(request?.headers?.authorization || "");
     if (!token) {
       if (requiredUser) {
         return response
@@ -55,7 +55,8 @@ export default async function AuthenticateUser(
 
     return next();
   } catch (err) {
-    console.log(err, "erro");
-    return next();
+    return response
+        .status(500)
+        .json(helpers.SendMessage("Erro interno!"));
   }
 }
