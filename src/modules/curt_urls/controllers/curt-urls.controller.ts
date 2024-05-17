@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import helper from "@helpers";
+import { v4 } from "uuid";
 import { AppDataSource } from "@server";
 import CurtUrls from "../models/curt-urls.model";
+import getEnvironments from "@environment";
 
 export default class CurtUrlsController {
-  public async acessURL(request: Request, response: Response) {
+  public async show(request: Request, response: Response) {
     try {
       const { path } = request.params;
       if (!helper.validationUrl(String(path))) {
@@ -15,8 +17,12 @@ export default class CurtUrlsController {
       const curtUrlRepo = AppDataSource.getRepository(CurtUrls);
 
       const url = await curtUrlRepo.findOne({
+        select: {
+          id: true,
+          views: true,
+        },
         where: {
-          short_id: String(path),
+          short_id: String(path).trim(),
         },
       });
 
@@ -32,7 +38,44 @@ export default class CurtUrlsController {
         .status(200)
         .redirect(url?.url || "https://www.google.com/");
     } catch (err) {
-        console.log(err);
+      console.log(err);
+      return await response
+        .status(500)
+        .json(helper.SendMessage("Erro interno"));
+    }
+  }
+
+  public async create(request: Request, response: Response) {
+    try {
+      const { url } = request.body;
+
+      if (!url || !helper.ValidUrl(String(url))) {
+        return await response
+          .status(401)
+          .json(helper.SendMessage("Url inválida"));
+      }
+
+      const id = v4();
+
+      let ShortID = helper.GerateShortUrl();
+
+      const curtUrlRepo = AppDataSource.getRepository(CurtUrls);
+
+      while ((await curtUrlRepo.count({ where: { short_id: ShortID } })) > 0) {
+        ShortID = helper.GerateShortUrl();
+      }
+
+      const curtUrl = new CurtUrls();
+      curtUrl.id = id;
+      curtUrl.short_id = ShortID;
+      curtUrl.url = String(url);
+      curtUrl.views = 0;
+
+      await curtUrlRepo.insert(curtUrl);
+
+      return response.status(201).json({...curtUrl, fullUrl: `${getEnvironments().baseURl}/${ShortID}`});
+    } catch (err) {
+      console.log(err);
       return await response
         .status(500)
         .json(helper.SendMessage("Erro interno"));
