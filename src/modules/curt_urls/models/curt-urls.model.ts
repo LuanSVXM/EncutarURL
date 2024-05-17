@@ -40,5 +40,5 @@ export default class CurtUrls {
 
   @ManyToOne(() => User, (relation) => relation.urls)
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
-  user: User | undefined;
+  user: User | null | undefined;
 }

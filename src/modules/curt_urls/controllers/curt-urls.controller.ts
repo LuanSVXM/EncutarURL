@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 import { AppDataSource } from "@server";
 import CurtUrls from "../models/curt-urls.model";
 import getEnvironments from "@environment";
+import User from "../../users/models/user.model";
 
 export default class CurtUrlsController {
   public async show(request: Request, response: Response) {
@@ -20,6 +21,7 @@ export default class CurtUrlsController {
         select: {
           id: true,
           views: true,
+          url: true,
         },
         where: {
           short_id: String(path).trim(),
@@ -61,19 +63,31 @@ export default class CurtUrlsController {
 
       const curtUrlRepo = AppDataSource.getRepository(CurtUrls);
 
+      const userRepo = AppDataSource.getRepository(User);
+
       while ((await curtUrlRepo.count({ where: { short_id: ShortID } })) > 0) {
         ShortID = helper.GerateShortUrl();
       }
+
+      const user = await userRepo.findOne({
+        select: { id: true },
+        where: {
+          id: request?.user?.id || "",
+        },
+      });
 
       const curtUrl = new CurtUrls();
       curtUrl.id = id;
       curtUrl.short_id = ShortID;
       curtUrl.url = String(url);
+      curtUrl.user = user;
       curtUrl.views = 0;
 
       await curtUrlRepo.insert(curtUrl);
 
-      return response.status(201).json({...curtUrl, fullUrl: `${getEnvironments().baseURl}/${ShortID}`});
+      return response
+        .status(201)
+        .json(`${getEnvironments().baseURl}/${ShortID}`);
     } catch (err) {
       console.log(err);
       return await response
