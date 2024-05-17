@@ -10,7 +10,7 @@ export default class CurtUrlsController {
   public async show(request: Request, response: Response) {
     try {
       const { path } = request.params;
-      if (!helper.validationUrl(String(path))) {
+      if (!helper.ValidUrlLenght(String(path))) {
         return await response
           .status(404)
           .json(helper.SendMessage("Pagina não encontrada"));

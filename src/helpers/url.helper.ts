@@ -18,6 +18,11 @@ export const CountURl = async (curt_url: CurtUrls) => {
   }
 };
 
+export const ValidUrlLenght = (url: string) => {
+    if(url.length > 6 || !url) return false;
+    return true;
+}
+
 
 export const ValidUrl = (url: string) => {
     if(url.includes(getEnvironments()?.baseURl)) return false;
