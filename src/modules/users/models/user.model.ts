@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import getEnvironments from "@environment";
+import CurtUrls from "../../curt_urls/models/curt-urls.model";
 
 @Index("user_pk", ["id"], { unique: true })
 @Entity("users", { schema: getEnvironments().schema })
@@ -41,4 +42,7 @@ export default class User {
     length: 255,
   })
   email: string | undefined;
+
+  @OneToMany(() => CurtUrls, (relation) => relation.user)
+  urls: CurtUrls[] | undefined;
 }
