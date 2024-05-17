@@ -12,7 +12,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "paths": {
-      "@config": ["./src/config"]
+      "@config": ["./src/config"],
+      "@environment": ["./src/config/environments"]
     }
   },
   "include": ["./src"]
