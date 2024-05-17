@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 dotenv.config();
 import express, { Router, Request, Response } from "express";
-import Config from './config';
+import Config from '@config';
 import cors from "cors";
 import { DataSource } from 'typeorm';
 
