@@ -4,6 +4,7 @@ import express, { Router, Request, Response } from "express";
 import Config from '@config';
 import cors from "cors";
 import { DataSource } from 'typeorm';
+import routerNavigation from "./navigation/routes";
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use(cors());
 
 const port = Config().PORT;
 
-const RouterApi = Router();
+const router = Router();
 
 export const AppDataSource = new DataSource({...Config().DATASOURCE});
 
@@ -21,15 +22,14 @@ AppDataSource.initialize()
   })
   .catch((error) => console.log(error));
 
-RouterApi.get("/", (request: Request, response: Response) =>  {
+router.get("/", (request: Request, response: Response) =>  {
     return response.status(200).json({message: "Seja bem vindo a api (/^▽^)/ "});
 });
 
-RouterApi.get("/redirect", (request: Request, response: Response) =>  {
-    return response.status(301).redirect("https://www.google.com/");
-});
 
-app.use(RouterApi);
+app.use(router);
+
+app.use(routerNavigation);
 
 
 app.listen(port, () => {
