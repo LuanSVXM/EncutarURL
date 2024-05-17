@@ -8,4 +8,5 @@ export const environment = {
   schema: process.env.DB_SCHEMA || 'admin',
   entities: "./dist/modules/**/models/*.js",
   baseURl: process.env.BASE_URL || "http://localhost",
+  jwtPassword: process.env.JWT_PASSWORD || 'incrible password',
 };

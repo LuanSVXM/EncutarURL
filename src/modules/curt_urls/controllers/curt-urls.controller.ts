@@ -40,7 +40,6 @@ export default class CurtUrlsController {
         .status(200)
         .redirect(url?.url || "https://www.google.com/");
     } catch (err) {
-      console.log(err);
       return await response
         .status(500)
         .json(helper.SendMessage("Erro interno"));
@@ -89,7 +88,6 @@ export default class CurtUrlsController {
         .status(201)
         .json(`${getEnvironments().baseURl}/${ShortID}`);
     } catch (err) {
-      console.log(err);
       return await response
         .status(500)
         .json(helper.SendMessage("Erro interno"));

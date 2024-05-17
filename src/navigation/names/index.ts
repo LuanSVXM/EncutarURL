@@ -1,6 +1,7 @@
 export const APP_ROUTES = {
   CurtUrlsRoute:               "/",
-  UserRoute:                   "/user"
+  UserRoute:                   "/user",
+  AuthRoute:                   "/auth"
 };
 
 
