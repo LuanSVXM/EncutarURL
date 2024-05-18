@@ -11,6 +11,10 @@ https://universidadeinovacaobackend.onrender.com
 ## Documentação 
 
 ```sh
+    https://universidadeinovacaobackend.onrender.com/api-docs
+```
+ou em desenvolvimento
+```sh
     http://localhost:{PORT}/api-docs
 ```
 <sup> PORT = Porta escolhida .env da aplicação </sup>
