@@ -3,7 +3,7 @@ import getEnvironments from "@environment";
 
 
 const SwaggerConfig = () => {
-  const URL_SERVER = `${getEnvironments().baseURl}${Config().PORT}`;
+  const URL_SERVER = `${getEnvironments().baseURl}`;
   return {
     openapi: "3.0.1",
     info: {
