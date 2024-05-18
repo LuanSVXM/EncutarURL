@@ -17,6 +17,7 @@
     ],
     "emitDecoratorMetadata": true,
     "paths": {
+      "@swagger": ["./src/config/swagger"],
       "@config": ["./src/config"],
       "@environment": ["./src/config/environments"],
       "@helpers": ["./src/helpers"],

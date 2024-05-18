@@ -5,7 +5,7 @@ import Config from "@config";
 import cors from "cors";
 import { DataSource } from "typeorm";
 import routerNavigation from "./navigation/routes";
-import { server, setup } from "./config/swagger";
+import { server, setup } from "@swagger";
 
 const app = express();
 
