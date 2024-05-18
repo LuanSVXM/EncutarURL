@@ -1,5 +1,5 @@
 import swaggerUI from "swagger-ui-express";
-import SwaggerConfig from "./swagger.json";
+import SwaggerConfig from "./SwaggerConfig";
 
 const server = swaggerUI.serve;
 
