@@ -1,8 +1,9 @@
 import Config from "@config";
+import getEnvironments from "@environment";
 
 
 const SwaggerConfig = () => {
-  const PORT = Config().PORT;
+  const URL_SERVER = `${getEnvironments().baseURl}${Config().PORT}`;
   return {
     openapi: "3.0.1",
     info: {
@@ -15,8 +16,8 @@ const SwaggerConfig = () => {
     },
     servers: [
       {
-        url: `http://localhost:${PORT}`,
-        description: "API DE TESTE",
+        url: `${URL_SERVER}`,
+        description: "API EM PRODUÇÃO",
       },
     ],
     basePath: "/",
