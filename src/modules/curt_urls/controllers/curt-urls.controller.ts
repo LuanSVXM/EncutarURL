@@ -6,6 +6,7 @@ import CurtUrls from "../models/curt-urls.model";
 import getEnvironments from "@environment";
 import User from "../../users/models/user.model";
 import { IsNull } from "typeorm";
+import Config from "@config";
 
 export default class CurtUrlsController {
   public async show(request: Request, response: Response) {
@@ -93,7 +94,7 @@ export default class CurtUrlsController {
 
       return response
         .status(201)
-        .send(`${getEnvironments().baseURl}/${ShortID}`);
+        .send(`${getEnvironments().baseURl}:${Config().PORT}/${ShortID}`);
     } catch (err) {
       return await response
         .status(500)

@@ -6,6 +6,7 @@ import cors from "cors";
 import { DataSource } from "typeorm";
 import routerNavigation from "./navigation/routes";
 import { server, setup } from "@swagger";
+import getEnvironments from "@environment";
 
 const app = express();
 
@@ -40,5 +41,5 @@ app.use(routerNavigation);
 
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em: http://localhost:${port}`);
+  console.log(`Servidor rodando em: ${getEnvironments().baseURl}:${Config().PORT}`);
 });
