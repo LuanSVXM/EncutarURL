@@ -15,6 +15,13 @@ userRouter.get(
   userUrlsController.show
 );
 
+userRouter.put(
+    "/urls",
+    (request, response, next) =>
+      middlewares.AuthenticateUser(request, response, next, true),
+    userUrlsController.update
+);
+
 userRouter.post("/", userController.create);
 
 export default userRouter;
