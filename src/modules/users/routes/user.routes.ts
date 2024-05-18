@@ -8,26 +8,6 @@ const userController = new UsersController();
 const userUrlsController = new UserUrlsController();
 const userRouter = Router();
 
-userRouter.get(
-  "/urls",
-  (request, response, next) =>
-    middlewares.AuthenticateUser(request, response, next, true),
-  userUrlsController.show
-);
-
-userRouter.put(
-    "/urls",
-    (request, response, next) =>
-      middlewares.AuthenticateUser(request, response, next, true),
-    userUrlsController.update
-);
-
-userRouter.delete(
-  "/urls/:id",
-  (request, response, next) =>
-    middlewares.AuthenticateUser(request, response, next, true),
-  userUrlsController.remove
-);
 
 userRouter.post("/", userController.create);
 

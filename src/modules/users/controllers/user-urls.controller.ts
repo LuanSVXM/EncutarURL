@@ -46,7 +46,6 @@ export default class UserUrlsController {
         },
       });
 
-      console.log(urls);
 
       interface IResultPayload extends CurtUrls {
         shortURL?: string;
