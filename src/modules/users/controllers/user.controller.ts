@@ -16,7 +16,7 @@ export default class UsersController {
         !helper.ValidEmail(String(email))
       ) {
         return response
-          .status(404)
+          .status(400)
           .json(helper.SendMessage("Campos inválidos!"));
       }
 

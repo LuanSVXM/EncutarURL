@@ -16,7 +16,7 @@ export default class AuthController {
         !helper.ValidEmail(String(email))
       ) {
         return response
-          .status(404)
+          .status(400)
           .json(helper.SendMessage("Campos inválidos!"));
       }
 
@@ -35,7 +35,7 @@ export default class AuthController {
       const isValidPassword = await helper.CompareHash(password, user.password);
 
       if (!isValidPassword) {
-        return response.status(404).json(helper.SendMessage("Senha incorreta"));
+        return response.status(401).json(helper.SendMessage("Senha incorreta"));
       }
 
       const secret = getEnvironments().jwtPassword;

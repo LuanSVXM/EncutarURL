@@ -23,7 +23,7 @@ export default async function AuthenticateUser(
     if (!token) {
       if (requiredUser) {
         return response
-          .status(400)
+          .status(401)
           .json(helpers.SendMessage("Usuário não autenticado."));
       }
       return next();

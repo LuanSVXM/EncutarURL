@@ -25,7 +25,7 @@ export default class UserUrlsController {
 
       if (!user) {
         return response
-          .status(401)
+          .status(404)
           .json(helper.SendMessage("Usuário não encontrado"));
       }
 
@@ -44,6 +44,9 @@ export default class UserUrlsController {
             id: String(request?.user?.id),
           },
         },
+        order: {
+          created_at: 'DESC',
+        }
       });
 
 
@@ -90,7 +93,7 @@ export default class UserUrlsController {
 
       if (!curtUrl) {
         return await response
-          .status(400)
+          .status(404)
           .json(helper.SendMessage("Não foi possivel encotrar url"));
       }
 
@@ -100,7 +103,7 @@ export default class UserUrlsController {
         !request?.user?.id
       ) {
         return await response
-          .status(400)
+          .status(403)
           .json(helper.SendMessage("Sem permissão para alterar essa url."));
       }
 
@@ -108,7 +111,7 @@ export default class UserUrlsController {
 
       return await response
         .status(200)
-        .json(helper.SendMessage("Url atualizado com sucesso!"));
+        .json(helper.SendMessage("Url atualizado com sucesso!", false));
     } catch (err: any) {
       return await response
         .status(500)
@@ -122,7 +125,7 @@ export default class UserUrlsController {
 
       if (!id) {
         return await response
-          .status(400)
+          .status(404)
           .json(helper.SendMessage("Url não encontrada."));
       }
 
@@ -150,7 +153,7 @@ export default class UserUrlsController {
         !request?.user?.id
       ) {
         return await response
-          .status(400)
+          .status(403)
           .json(helper.SendMessage("Sem permissão para alterar essa url."));
       }
 
@@ -158,7 +161,7 @@ export default class UserUrlsController {
 
       return await response
         .status(200)
-        .json(helper.SendMessage("Url atualizado com sucesso!"));
+        .json(helper.SendMessage("Url deletada com sucesso!"));
     } catch (err: any) {
       return await response
         .status(500)

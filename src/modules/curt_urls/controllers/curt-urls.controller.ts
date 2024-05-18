@@ -66,7 +66,12 @@ export default class CurtUrlsController {
 
       const userRepo = AppDataSource.getRepository(User);
 
-      while ((await curtUrlRepo.count({ where: { short_id: ShortID } })) > 0) {
+      while (
+        (await curtUrlRepo.count({ where: { short_id: ShortID } })) > 0 &&
+        ShortID !== "user" &&
+        ShortID !== "auth" &&
+        ShortID !== "cut"
+      ) {
         ShortID = helper.GerateShortUrl();
       }
 
@@ -88,7 +93,7 @@ export default class CurtUrlsController {
 
       return response
         .status(201)
-        .json(`${getEnvironments().baseURl}/${ShortID}`);
+        .send(`${getEnvironments().baseURl}/${ShortID}`);
     } catch (err) {
       return await response
         .status(500)
