@@ -5,13 +5,13 @@ Api desenvolvida para encurtar links.
 
 ## Produção
 ```sh
-https://universidadeinovacaobackend.onrender.com
+    https://encutarurl.onrender.com
 ```
 
 ## Documentação 
 
 ```sh
-    https://universidadeinovacaobackend.onrender.com/api-docs
+    https://encutarurl.onrender.com
 ```
 ou em desenvolvimento
 ```sh
