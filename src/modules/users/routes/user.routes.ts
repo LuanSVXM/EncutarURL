@@ -22,6 +22,13 @@ userRouter.put(
     userUrlsController.update
 );
 
+userRouter.delete(
+  "/urls/:id",
+  (request, response, next) =>
+    middlewares.AuthenticateUser(request, response, next, true),
+  userUrlsController.remove
+);
+
 userRouter.post("/", userController.create);
 
 export default userRouter;

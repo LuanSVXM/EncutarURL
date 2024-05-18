@@ -5,6 +5,7 @@ import { AppDataSource } from "@server";
 import CurtUrls from "../models/curt-urls.model";
 import getEnvironments from "@environment";
 import User from "../../users/models/user.model";
+import { IsNull } from "typeorm";
 
 export default class CurtUrlsController {
   public async show(request: Request, response: Response) {
@@ -25,6 +26,7 @@ export default class CurtUrlsController {
         },
         where: {
           short_id: String(path).trim(),
+          deleted_at: IsNull(),
         },
       });
 
