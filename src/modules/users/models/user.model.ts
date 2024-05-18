@@ -1,9 +1,11 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   Index,
   OneToMany,
   PrimaryColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import getEnvironments from "@environment";
 import CurtUrls from "../../curt_urls/models/curt-urls.model";
@@ -38,6 +40,25 @@ export default class User {
     length: 255,
   })
   email: string | undefined;
+
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'timestamp'
+  })
+  created_at: Date | undefined;
+
+  @UpdateDateColumn({
+    name: 'updated_at',
+    type: 'timestamp'
+  })
+  updated_at: Date | undefined;
+
+  @Column({
+    name: 'deleted_at',
+    type: 'timestamp'
+  })
+  deleted_at: Date | undefined;
+
 
   @OneToMany(() => CurtUrls, (relation) => relation.user)
   urls: CurtUrls[] | undefined;

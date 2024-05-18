@@ -1,10 +1,12 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   Index,
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import getEnvironments from "@environment";
 import User from "../../users/models/user.model";
@@ -37,6 +39,25 @@ export default class CurtUrls {
     length: 6,
   })
   short_id: string | undefined;
+
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'timestamp'
+  })
+  created_at: Date | undefined;
+
+  @UpdateDateColumn({
+    name: 'updated_at',
+    type: 'timestamp'
+  })
+  updated_at: Date | undefined;
+
+  @Column({
+    name: 'deleted_at',
+    type: 'timestamp'
+  })
+  deleted_at: Date | undefined;
+
 
   @ManyToOne(() => User, (relation) => relation.urls)
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
