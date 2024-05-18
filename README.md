@@ -5,17 +5,17 @@ Api desenvolvida para encurtar links.
 
 ## Produção
 ```sh
-    https://encutarurl.onrender.com
+https://encutarurl.onrender.com
 ```
 
 ## Documentação 
 
 ```sh
-    https://encutarurl.onrender.com
+https://encutarurl.onrender.com/api-docs
 ```
 ou em desenvolvimento
 ```sh
-    http://localhost:{PORT}/api-docs
+http://localhost:{PORT}/api-docs
 ```
 <sup> PORT = Porta escolhida .env da aplicação </sup>
 
